@@ -129,5 +129,6 @@ This repo is build to get multiple page data and concatenates the data together 
     When one node (ip address) is generating to much traffic on Coinmarketcap it may get banned for a period of time.
       See the source of explanation: https://www.reddit.com/r/Cointrexer/comments/8lqtfo/coinmarketcap_error_429/
      <br /><br />The suggestion is to change the api to sort the coin (such as order by market cap) so that all your preferred coin is at the top for better refresh time. 
+
 END
 ------------------------------------------------------------------------------------------------------------------------------------
