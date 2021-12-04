@@ -130,5 +130,15 @@ This repo is build to get multiple page data and concatenates the data together 
       See the source of explanation: https://www.reddit.com/r/Cointrexer/comments/8lqtfo/coinmarketcap_error_429/
      <br /><br />The suggestion is to change the api to sort the coin (such as order by market cap) so that all your preferred coin is at the top for better refresh time. 
 
+
+## You can then, use Vlookup formula to select information to be pull to your specific cell.
+For example: 
+
+```
+=VLOOKUP(lower(A1), getAllCoins!$A$2:$K
+```
+
+Input the symbol of the coin (eg: ETH) to cell A1 and the formula on cell A2. The formula will then return the price for ETH.
+
 END
 ------------------------------------------------------------------------------------------------------------------------------------
