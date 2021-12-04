@@ -8,10 +8,10 @@ Coingecko API only allows maximum of 1 page, estimated 250 coins data to be retu
 This repo is build to get multiple page data and concatenates the data together before outputing the data to sheet.
 
 ### There is two functions that is developed to get the mentioned function:
-(1) getAllCrypto() function allows user to use formula to obtain the results
-(2) writeDataToSheet() function allows data to be written directly to the sheet name getAllCoins
+1. getAllCrypto() function allows user to use formula to obtain the results
+2. writeDataToSheet() function allows data to be written directly to the sheet name getAllCoins
 
-Advantages & Disadvantages
+**Advantages & Disadvantages**
 |   Function Name  |   Advantage                                             |  Disadvantage                                 |   Type   |
 | ---------------- | ------------------------------------------------------- | --------------------------------------------- | -------- |
 |   getAllCrypto   | Easy to use, use it in any cell of the sheets           | Low loop count, api error will clear all data | formula  |
