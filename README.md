@@ -7,7 +7,7 @@ Coingecko API only allows maximum of 1 page, estimated 250 coins data to be retu
 
 This repo is build to get multiple page data and concatenates the data together before outputing the data to sheet.
 
-###There is two functions that is developed to get the mentioned function:
+### There is two functions that is developed to get the mentioned function:
 (1) getAllCrypto() function allows user to use formula to obtain the results
 (2) writeDataToSheet() function allows data to be written directly to the sheet name getAllCoins
 
@@ -28,7 +28,7 @@ Advantages & Disadvantages
 7. Click on "Code.gs" in your App Script.
 8. Go to [this project's code.gs](https://github.com/melviinkhoo/sheets-crypto/blob/main/code.gs) and copy raw content (the whole code) and paste it to the selected script file.
 
-  ###If you plan to use (1)getAllCrypto custom formula
+  ### If you plan to use (1)getAllCrypto custom formula
   9. Click on "Trigger" on the left hand panel in the Script Editor.
   10. Select "Add Trigger" then follow the settings below and press "Save":
   ![Adding trigger for getAllCrypto](/assets/images/trigger_getAllCrypto.PNG)
@@ -75,7 +75,7 @@ Advantages & Disadvantages
       See the source of explanation: https://www.reddit.com/r/Cointrexer/comments/8lqtfo/coinmarketcap_error_429/
 
   
-  ###If you plan to use (2)writeDataToSheet function
+  ### If you plan to use (2)writeDataToSheet function
   9. Click on "Trigger" on the left hand panel in the Script Editor.
   10. Select "Add Trigger" then follow the settings below and press "Save":
   ![Adding trigger for writeDataToSheet](/assets/images/trigger_writeDataToSheet.PNG)
