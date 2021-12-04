@@ -104,9 +104,12 @@ function getAllCrypto(url, query, parseOptions,loopNum){
  * 
  *  The function uses getAllCrypto function and write the crypto data
  *  directly to the sheet name getAllCoins
- *  It is an alternative to getAllCrypto function as getAllCrypto formula sometimes will get the error below:
+ *  It is an alternative to getAllCrypto function as getAllCrypto formula sometimes will get the error below, and returned no data:
  *  Exception: Request failed for https://api.coingecko.com returned code 429. Truncated server response: error code: 1015
- *  Due to Google Sheets 
+ *    Due to when Apps Script runs a script, the script is assigned to one of the Google Cloud nodes. 
+ *    This notes makes an outbound IP connection to fetch the data from Coinmarketcap. 
+ *    When one node (ip address) is generating to much traffic on Coinmarketcap it may get banned for a period of time.
+ *    See the source of explanation: https://www.reddit.com/r/Cointrexer/comments/8lqtfo/coinmarketcap_error_429/
  *
  * It needs to be triggered with a Google Apps Scripts trigger at https://script.google.com/home/:
  *   - Select project and add trigger
@@ -120,7 +123,8 @@ function getAllCrypto(url, query, parseOptions,loopNum){
  *    @param {query}          Cell D1
  *    @param {parseOptions}   Cell F1
  *    @param {loopNum}        Cell H1
- *  Please refer to getAllCrypto function to udnerstand more about the parameter
+ *  Please refer to getAllCrypto function to udnerstand more about the parameter. 
+ *  The loopNum can go up to 150 (tested) 
  *
  *  Example parameter input in cell:
  *    @param {B1}           https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=300&page=1&sparkline=false
