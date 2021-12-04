@@ -1,7 +1,7 @@
 sheets-crypto
 # Google Sheets Get All Crypto Coin App Script with Coingecko API
 
-**Google Sheets Get All Crypto Coin App Script** allows users to get the Crypto Coin data in full without max limit of 250 per page.
+**Google Sheets Get All Crypto Coin App Script** allows users to get the Crypto Coin data in full without max limit of 250 coins per page.
 
 Coingecko API only allows maximum of 1 page, estimated 250 coins data to be returned in Google App Script. 
 
