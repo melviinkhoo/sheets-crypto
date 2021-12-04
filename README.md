@@ -47,16 +47,16 @@ This repo is build to get multiple page data and concatenates the data together 
   ```
   
   The following param needs to but inputted into the formula:
-  <br />url:            The Coingecko API URL with param, such as **"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=id_asc&per_page=1000&page=1&sparkline=false"**
+  <br />**url**:            The Coingecko API URL with param, such as **"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=id_asc&per_page=1000&page=1&sparkline=false"**
   <br />                (refer to [Coingecko API documentation](https://www.coingecko.com/en/api/documentation))
   <br />
-  <br />query:          Query data to be returned such as **"/name,/symbol,/current_price,/market_cap,/price_change,/total_volume,/high_24h,/low_24h"**
+  <br />**query**:          Query data to be returned such as **"/name,/symbol,/current_price,/market_cap,/price_change,/total_volume,/high_24h,/low_24h"**
   <br />                (refer to [Coingecko API documentation](https://www.coingecko.com/en/api/documentation))
   <br />
-  <br />parseOptions:   Changing behavior such as **"noTruncate,noHeaders"**
+  <br />**parseOptions**:   Changing behavior such as **"noTruncate,noHeaders"**
   <br />                (refer to [ImportJSON](https://github.com/bradjasper/ImportJSON/blob/master/ImportJSON.gs))
   <br />
-  <br />loopNum:        Number of pages to be loop, such as **"8"**
+  <br />**loopNum**:        Number of pages to be loop, such as **"8"**
   <br />                !The loopNum must be lesser than 34, Google Sheets limit custom formula of 30 seconds run time.
   
   Example of fully working formula:
@@ -99,16 +99,16 @@ This repo is build to get multiple page data and concatenates the data together 
         
   
   The following param needs to but inputted into the formula:
-  <br />url:            The Coingecko API URL with param, such as **https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=id_asc&per_page=1000&page=1&sparkline=false**
+  <br />**url**:            The Coingecko API URL with param, such as **https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=id_asc&per_page=1000&page=1&sparkline=false**
   <br />                (refer to [Coingecko API documentation](https://www.coingecko.com/en/api/documentation))
   <br />
-  <br />query:          Query data to be returned such as **"/name,/symbol,/current_price,/market_cap,/price_change,/total_volume,/high_24h,/low_24h"**
+  <br />**query**:          Query data to be returned such as **"/name,/symbol,/current_price,/market_cap,/price_change,/total_volume,/high_24h,/low_24h"**
   <br />                (refer to [Coingecko API documentation](https://www.coingecko.com/en/api/documentation))
   <br />
-  <br />parseOptions:   Changing behavior such as **noTruncate,noHeaders**
+  <br />**parseOptions**:   Changing behavior such as **noTruncate,noHeaders**
   <br />                (refer to [ImportJSON](https://github.com/bradjasper/ImportJSON/blob/master/ImportJSON.gs))
   <br />
-  <br />loopNum:        Number of pages to be loop, such as **150**
+  <br />**loopNum**:        Number of pages to be loop, such as **150**
 
   
   Example of fully working cell items:
