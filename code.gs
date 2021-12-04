@@ -29,7 +29,7 @@
  *
  * Four parameter url, query, parseOptions,pageNum is required to be inputted to the function.
  *    @param {url}            The Coingecko API URL with param, 
-*                             such as "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=1000&page=1&sparkline=false"
+ *                            such as "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=1000&page=1&sparkline=false"
  *    @param {query}          Query data to be returned such as "/name,/symbol,/current_price,/market_cap,/price_change,/total_volume,/high_24h,/low_24h"
  *    @param {parseOptions}   Refer to below on changing behavior such as "noTruncate,noHeaders"
  *    @param {loopNum}        Number of pages to be loop, such as "8"
@@ -49,7 +49,7 @@
  *    noInherit:     Don't inherit values from parent elements
  *    noTruncate:    Don't truncate values
  *    rawHeaders:    Don't prettify headers
- *    noHeaders:     Don't include headers, only the data
+ *    noHeaders:     Don't include headers, only the data (recommended)
  *    allHeaders:    Include all headers from the query parameter in the order they are listed
  *    debugLocation: Prepend each value with the row & column it belongs in
  *
@@ -57,35 +57,99 @@
  *
  *   =getAllCrypto("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=1000&page=1&sparkline=false",
  *                 "/name,/symbol,/current_price,/market_cap,/price_change,/total_volume,/high_24h,/low_24h","noTruncate,noHeaders",
- *                 "8",
+ *                 "30",
  *                  doNotDelete!$A$1)
- *
+ *  The loopNum must be lesser than 34, Google Sheets limit custom formula of 30 seconds run time.
  * 
  **/
-function getAllCrypto(url, query, parseOptions,pageNum){
+function getAllCrypto(url, query, parseOptions,loopNum){
+  //Logger.log("#URL: "+url+" #query: "+query+" #parseOptions: "+parseOptions+" #loopNum: "+loopNum)
   var fResult={};
-  if(url.indexOf("&page=")<0){ //if no &page param found
-    fResult = ImportCrypto(url+"&page=1", query, parseOptions)
+  try{
+    if(url.indexOf("&page=")<0){ //if no &page param found
+      fResult = ImportCrypto(url+"&page=1", query, parseOptions)
+      
+      for(var i=2;i<parseInt(loopNum);i++){
+        Logger.log("loop "+i) //for record in log purpose
+        var editedURL = url+"&page="+i;
+        var result = ImportCrypto(editedURL, query, parseOptions);
+        fResult=fResult.concat(result);
+        Utilities.sleep(500); //to avoid calling to fast, change to lower if maximum execution time error occurs
+      }
+    }else{  //if &page param found
+      var searchIndex1 = url.indexOf("&page=");
+      var searchIndex2 = url.substring(searchIndex1+6,url.length).indexOf("&");
+      var pageNum = url.substring(searchIndex1+6,searchIndex1+6+searchIndex2)
+      fResult = ImportCrypto(url, query, parseOptions)
+      
+      for(var i=parseInt(pageNum)+1;i<parseInt(loopNum);i++){
+        Logger.log("loop "+i) //for record in log purpose
+        var editedURL = url.substring(0,searchIndex1+6)+i+url.substring(searchIndex1+6+searchIndex2,url.length);
+        var result = ImportCrypto(editedURL, query, parseOptions);
+        fResult=fResult.concat(result);
+        Utilities.sleep(500);//to avoid calling to fast, change to lower if maximum execution time error occurs
+      }
+    }
     
-    for(var i=2;i<=parseInt(pageNum);i++){
-      var editedURL = url+"&page="+i;
-      var result = ImportCrypto(editedURL, query, parseOptions);
-      fResult=fResult.concat(result);
+    return fResult;
+  }}catch(e){
+    Logger.log("Error: "+e);
+    if(fResult[0]==undefined){
+      return "Error loading due to too much request made to Coingekco, try again later." //return error if no data obtained 
+    }else{
+      return fResult
     }
-  }
-else{  //if &page param found
-  var searchIndex1 = url.indexOf("&page=");
-  var searchIndex2 = url.substring(searchIndex1+6,url.length).indexOf("&");
-  fResult = ImportCrypto(url, query, parseOptions)
 
-  for(var i=2;i<=parseInt(pageNum);i++){
-    var editedURL = url.substring(0,searchIndex1+6)+i+url.substring(searchIndex1+6+searchIndex2,url.length);
-    var result = ImportCrypto(editedURL, query, parseOptions);
-    fResult=fResult.concat(result);
-    }
-  }
-return fResult;
+/**
+ * 
+ *  The function uses getAllCrypto function and write the crypto data
+ *  directly to the sheet name getAllCoins
+ *  It is an alternative to getAllCrypto function as getAllCrypto formula sometimes will get the error below:
+ *  Exception: Request failed for https://api.coingecko.com returned code 429. Truncated server response: error code: 1015
+ *  Due to Google Sheets 
+ *
+ * It needs to be triggered with a Google Apps Scripts trigger at https://script.google.com/home/:
+ *   - Select project and add trigger
+ *   - Choose which function to run: triggerAutoRefresh
+ *   - Select event source: Time-driven
+ *   - Select type of time based trigger: Minutes timer
+ *   - Select minute interval: 5 minutes (to avoid too many requests)
+ * 
+ *  Param need to be at specific cell 
+ *    @param {url}            Cell B1
+ *    @param {query}          Cell D1
+ *    @param {parseOptions}   Cell F1
+ *    @param {loopNum}        Cell H1
+ *  Please refer to getAllCrypto function to udnerstand more about the parameter
+ *
+ *  Example parameter input in cell:
+ *    @param {B1}           https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=300&page=1&sparkline=false
+ *    @param {D1}           "/symbol,/symbol,/name,/current_price,/market_cap,/price_change,/total_volume,/high_24h,/low_24h"
+ *    @param {F1}           noTruncate,noHeaders
+ *    @param {H1}           200
+ *
+ *  Please refer to Help Guide for more info
+ **/
+
+function writeDataToSheet(){
+  var ss = SpreadsheetApp.getActive().getSheetByName('getAllCoins');
+  var params = ss.getRange(1,1,1,8).getDisplayValues();
+  var getData;
+  
+  try{
+   getData = getAllCrypto(params[0][1].toString(),params[0][3].toString(),params[0][5].toString(),params[0][7].toString());
+  ss.getRange(2, 1,getData.length,getData[0].length).setValues(getData);
+}catch(e){
+
+if(getData.length==undefined){
+Logger.log("Error in Write: "+e);
+}else{
+ss.getRange(2, 1,getData.length,getData[0].length).setValues(getData);
 }
+}
+}
+
+
 
 /**
  * The following function is obtained from the Import CoinGecko Cryptocurrency Data into Google Sheets [Updated 2021]
@@ -93,9 +157,15 @@ return fResult;
  * 
  *  The function helps to refresh the formula.
  *
- *  A new sheet with the sheet name doNotDelete is required. 
- *  Add the function triggerAutoRefresh() to trigger is requied. 
- *  For the steps to implement, see Help Guide
+ * This function by Vadorequest generates a random number in the "randomNumber" sheet.
+ *
+ * It needs to be triggered with a Google Apps Scripts trigger at https://script.google.com/home/:
+ *   - Select project and add trigger
+ *   - Choose which function to run: triggerAutoRefresh
+ *   - Select event source: Time-driven
+ *   - Select type of time based trigger: Minutes timer
+ *   - Select minute interval: 10 minutes (to avoid too many requests)
+ * Please refer to Help Guide for more info
  *
  **/
 
