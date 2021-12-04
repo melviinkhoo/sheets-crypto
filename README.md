@@ -32,8 +32,8 @@ This repo is build to get multiple page data and concatenates the data together 
   9. Click on "Trigger" on the left hand panel in the Script Editor.
   10. Select "Add Trigger" then follow the settings below and press "Save":
   ![Adding trigger for getAllCrypto](/assets/images/trigger_getAllCrypto.PNG)
-  (You will get error if the next steps is not done within 5 minutes. The error can be ignored.) 
-  (You can also delete the trigger and add it again after finishing the last step, or change it to notify me weekly if you find the error annoying.)
+  \(You will get error if the next steps is not done within 5 minutes. The error can be ignored.) 
+  \(You can also delete the trigger and add it again after finishing the last step, or change it to notify me weekly if you find the error annoying.)
   
   12. Back to your Google Sheets, create a new sheet tab with the name "doNotDelete".
   13. Input the following formula to any of the cell in any of the sheet tab:
