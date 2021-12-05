@@ -135,11 +135,11 @@ This repo is build to get multiple page data and concatenates the data together 
 For example: 
 
 ```
-=VLOOKUP(lower(A1), getAllCoins!$A$2:$K
+=VLOOKUP(lower(A1), getAllCoins!$A$2:$K,3, false)
 ```
 
 Input the symbol of the coin (eg: ETH) to cell A1 and the formula on cell A2. The formula will then return the price for ETH.<br />
-<a href="https://docs.google.com/spreadsheets/d/1Nqnynzybk-VThI06GcfTq9o4-wjxZ9BWZNItK_9vOQ4/edit?usp=sharing" target="_blank">View Only Google Sheets sample</a> for this project (please do not request access)<br />
+<a href="https://docs.google.com/spreadsheets/d/1Nqnynzybk-VThI06GcfTq9o4-wjxZ9BWZNItK_9vOQ4/edit?usp=sharing" target="_blank">View Only Google Sheets sample</a> for this project (please do not request access).<br />
 
 END
 ------------------------------------------------------------------------------------------------------------------------------------
