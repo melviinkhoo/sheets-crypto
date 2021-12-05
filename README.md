@@ -139,6 +139,7 @@ For example:
 ```
 
 Input the symbol of the coin (eg: ETH) to cell A1 and the formula on cell A2. The formula will then return the price for ETH.
+[View Only Google Sheets sample](https://docs.google.com/spreadsheets/d/1Nqnynzybk-VThI06GcfTq9o4-wjxZ9BWZNItK_9vOQ4/edit?usp=sharing) for this project (please do not request access)
 
 END
 ------------------------------------------------------------------------------------------------------------------------------------
