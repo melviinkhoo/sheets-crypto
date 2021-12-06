@@ -146,14 +146,14 @@ Input the symbol of the coin (eg: ETH) to cell A1 and the formula on cell A2. Th
 You might receive the following error during script run, refer to the suggested solution below:
 
 > Maximum Executing Time Error
-Decrease the utilities.sleep() value to a lower number. Please note that there's execution limit imposed by Google. Custom formula execution limit is 30 seconds while custom function 6 minutes. Refer to [here](https://developers.google.com/apps-script/guides/services/quotas) for more info.
+ <br />Decrease the utilities.sleep() value to a lower number. Please note that there's execution limit imposed by Google. Custom formula execution limit is 30 seconds while custom function 6 minutes. Refer to [here](https://developers.google.com/apps-script/guides/services/quotas) for more info.
 
 > Error loading due to too much request made to Coingekco, try again later
-This is due to when Apps Script runs a script, the script is assigned to one of the Google Cloud nodes. 
+ <br />This is due to when Apps Script runs a script, the script is assigned to one of the Google Cloud nodes. 
     This notes makes an outbound IP connection to fetch the data from Coinmarketcap. 
     When one node (ip address) is generating to much traffic on Coinmarketcap it may get banned for a period of time.
       See the source of explanation: https://www.reddit.com/r/Cointrexer/comments/8lqtfo/coinmarketcap_error_429/
-     <br /><br />The suggestion is to change the api to sort the coin (such as order by market cap) so that all your preferred coin is at the top for better refresh time, and to reduce the loop number.
+     <br />The suggestion is to change the api to sort the coin (such as order by market cap) so that all your preferred coin is at the top for better refresh time, and to reduce the loop number.
 
 END
 ------------------------------------------------------------------------------------------------------------------------------------
