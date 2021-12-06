@@ -98,7 +98,7 @@ This repo is build to get multiple page data and concatenates the data together 
         Cell H1: loopNum<br /> <br /> 
         
   
-  The following param needs to but inputted into the formula:
+  The following param needs to but inputted into the formula:<br /> 
   <br />**url**:            The Coingecko API URL with param, such as **https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=id_asc&per_page=1000&page=1&sparkline=false**
   <br />                (refer to [Coingecko API documentation](https://www.coingecko.com/en/api/documentation))
   <br />
