@@ -82,7 +82,7 @@ function getAllCrypto(url, query, parseOptions,loopNum){
         var editedURL = url+"&page="+i;
         var result = ImportCrypto(editedURL, query, parseOptions);
         fResult=fResult.concat(result);
-        Utilities.sleep(10); //to reduce number of api call, set lower number if maximum time execution error occur.
+        Utilities.sleep(100); //to reduce number of api call, set lower number if maximum time execution error occur.
       }
     }else{  //if &page param found
       var searchIndex1 = url.indexOf("&page=");
@@ -94,7 +94,7 @@ function getAllCrypto(url, query, parseOptions,loopNum){
         var editedURL = url.substring(0,searchIndex1+6)+i+url.substring(searchIndex1+6+searchIndex2,url.length);
         var result = ImportCrypto(editedURL, query, parseOptions);
         fResult=fResult.concat(result);
-        Utilities.sleep(10);//to reduce number of api call, set lower number if maximum time execution error occur.
+        Utilities.sleep(100);//to reduce number of api call, set lower number if maximum time execution error occur.
       }
     }
     
