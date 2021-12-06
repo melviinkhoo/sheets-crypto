@@ -88,14 +88,14 @@ This repo is build to get multiple page data and concatenates the data together 
   12. Back to your Google Sheets, create a new sheet tab with the name "getAllCoins".
   13. Input the following parameters at the following cell:
         
-        Cell A1: **URL:**
-        Cell B1: url
-        Cell C1: **Query:**
-        Cell D1: query
-        Cell E1: **parseOptions:**
-        Cell F1: parseOptions
-        Cell G1: **loopNum:**
-        Cell H1: loopNum
+        Cell A1: **URL:**<br /> 
+        Cell B1: url<br /> 
+        Cell C1: **Query:**<br /> 
+        Cell D1: query<br /> 
+        Cell E1: **parseOptions:**<br /> 
+        Cell F1: parseOptions<br /> 
+        Cell G1: **loopNum:**<br /> 
+        Cell H1: loopNum<br /> <br /> 
         
   
   The following param needs to but inputted into the formula:
