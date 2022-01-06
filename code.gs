@@ -76,11 +76,11 @@ function getAllCrypto(url, query, parseOptions,loopNum){
   var fResult={};
   try{
     if(url.indexOf("&page=")<0){ //if no &page param found
-      fResult = ImportCrypto(url+"&page=1", query, parseOptions)
+      fResult = ImportJSON(url+"&page=1", query, parseOptions)
       for(var i=2;i<parseInt(loopNum);i++){
         Logger.log("loop "+i); //To record in log. (Optional)
         var editedURL = url+"&page="+i;
-        var result = ImportCrypto(editedURL, query, parseOptions);
+        var result = ImportJSON(editedURL, query, parseOptions);
         fResult=fResult.concat(result);
         Utilities.sleep(100); //to reduce number of api call, set lower number if maximum time execution error occur.
       }
@@ -88,11 +88,11 @@ function getAllCrypto(url, query, parseOptions,loopNum){
       var searchIndex1 = url.indexOf("&page=");
       var searchIndex2 = url.substring(searchIndex1+6,url.length).indexOf("&");
       var pageNum = url.substring(searchIndex1+6,searchIndex1+6+searchIndex2)
-      fResult = ImportCrypto(url, query, parseOptions)
+      fResult = ImportJSON(url, query, parseOptions)
       for(var i=parseInt(pageNum)+1;i<parseInt(loopNum);i++){
         Logger.log("loop "+i); //To record in log. (Optional)
         var editedURL = url.substring(0,searchIndex1+6)+i+url.substring(searchIndex1+6+searchIndex2,url.length);
-        var result = ImportCrypto(editedURL, query, parseOptions);
+        var result = ImportJSON(editedURL, query, parseOptions);
         fResult=fResult.concat(result);
         Utilities.sleep(100);//to reduce number of api call, set lower number if maximum time execution error occur.
       }
